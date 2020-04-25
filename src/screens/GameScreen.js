@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Text, View, TouchableOpacity, Alert, FlatList } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+  FlatList,
+  ScrollView,
+} from "react-native";
 import styles from "../constants/styles";
 import Card from "../components/Card";
 import { secondary } from "../constants/colors";
@@ -63,44 +70,52 @@ const GameScreen = (props) => {
   };
 
   return (
-    <View style={styles.mainContainer}>
-      <Card style={styles.container}>
-        <Text style={styles.title}> Computer's Guess </Text>
-        <Text style={styles.selectedNumber}> {currentGuess} </Text>
-        <View style={styles.btnLayout}>
-          <TouchableOpacity
-            style={styles.reset}
-            onPress={() => nextGuessHandler("lower")}
-          >
-            <CustomText style={[styles.text, { padding: 3, borderRadius: 30 }]}>
-              Lower
-            </CustomText>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.reset,
-              { backgroundColor: secondary, borderRadius: 30 },
-            ]}
-            onPress={() => nextGuessHandler("greater")}
-          >
-            <CustomText style={[styles.text, { padding: 3 }]}>
-              {" "}
-              Greater{" "}
-            </CustomText>
-          </TouchableOpacity>
-        </View>
-      </Card>
-      <FlatList
-        data={pastGuesses}
-        keyExtractor={(item, index) => "Key " + index}
-        renderItem={({ item, index }) => (
-          <View style={styles.guessesTyle}>
-            <Text> #{index + 1}</Text>
-            <Text>{item}</Text>
+    <ScrollView>
+      <View style={styles.mainContainer}>
+        <Card style={styles.container}>
+          <Text style={styles.title}> Computer's Guess </Text>
+          <Text style={styles.selectedNumber}> {currentGuess} </Text>
+          <View style={styles.btnLayout}>
+            <TouchableOpacity
+              style={[styles.reset, { alignSelf: "center" }]}
+              onPress={() => nextGuessHandler("lower")}
+            >
+              <CustomText style={{ fontSize: 16, textAlign: "center" }}>
+                Lower
+              </CustomText>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[
+                styles.reset,
+                {
+                  backgroundColor: secondary,
+                  borderRadius: 30,
+                  alignSelf: "center",
+                },
+              ]}
+              onPress={() => nextGuessHandler("greater")}
+            >
+              <CustomText style={{ fontSize: 16, textAlign: "center" }}>
+                {" "}
+                Greater{" "}
+              </CustomText>
+            </TouchableOpacity>
           </View>
-        )}
-      />
-    </View>
+        </Card>
+        <FlatList
+          style={{ paddingBottom: 30 }}
+          showsVerticalScrollIndicator={false}
+          data={pastGuesses}
+          keyExtractor={(item, index) => "Key " + index}
+          renderItem={({ item, index }) => (
+            <View style={styles.guessesTyle}>
+              <Text> #{index + 1}</Text>
+              <Text>{item}</Text>
+            </View>
+          )}
+        />
+      </View>
+    </ScrollView>
   );
 };
 

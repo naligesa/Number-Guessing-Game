@@ -1,12 +1,12 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { primary, secondary } from "./colors";
+import { primary, secondary, titleColor } from "./colors";
 
 export default StyleSheet.create({
   mainContainer: {
     flex: 1,
   },
   container: {
-    width: 300,
+    width: Dimensions.get("window").width * 0.7,
     alignSelf: "center",
     alignItems: "center",
     marginTop: 30,
@@ -22,6 +22,7 @@ export default StyleSheet.create({
     borderColor: "black",
     borderWidth: 0.5,
     padding: 10,
+    marginBottom: 15,
   },
   card: {
     shadowColor: "black",
@@ -33,13 +34,14 @@ export default StyleSheet.create({
   },
   input: {
     width: 70,
-    height: 50,
+    height: 60,
     padding: 10,
     marginTop: 15,
     borderColor: primary,
     borderRadius: 20,
     borderWidth: 2,
     textAlign: "center",
+    alignSelf: "center",
     fontSize: 18,
   },
   selectedNumber: {
@@ -60,7 +62,7 @@ export default StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     marginTop: 30,
-    padding: 30,
+    padding: 25,
     backgroundColor: "white",
   },
   title: {
@@ -77,26 +79,35 @@ export default StyleSheet.create({
     fontFamily: "open-sans-bold",
   },
   btnLayout: {
-    width: Dimensions.get("window").width / 2,
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 30,
   },
   reset: {
     backgroundColor: "blue",
-    padding: 10,
+    width: Dimensions.get("window").width / 4,
     borderRadius: 20,
+    padding: 10,
   },
-  header: {
-    height: 90,
-    backgroundColor: primary,
+  headerBase: {
     justifyContent: "center",
+    backgroundColor: primary,
+  },
+  headerIOS: {
+    height: 90,
     paddingTop: 36,
+  },
+  headerAndroid: {
+    height: 60,
+    paddingTop: 5,
+    alignItems: "center",
   },
   text: {
     color: "white",
     fontSize: 18,
     fontWeight: "700",
+    padding: 3,
     textAlign: "center",
   },
   customText: {
